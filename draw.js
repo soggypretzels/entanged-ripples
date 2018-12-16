@@ -37,12 +37,14 @@ canvas.addEventListener('mousedown', async function(evt) {
 
 function recordLine() {
   return new Promise(resolve => {
+  	ctx.beginPath();
     let lastSegmentTime = new Date();
     var lineArray = []
     function captureLineSegment(event) {
       data = getMousePos(canvas, event)
       data.relativeTimeDelta = getTimeDelta()
       lineArray.push(data);
+      drawSegment(data)
     }
 
     function stopCapture() {
