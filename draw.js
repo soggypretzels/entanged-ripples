@@ -101,16 +101,16 @@ function delaySegment(delay){
 
 function playback(strokeList) {
 	let sequenceDelay = 0
+	let interStrokeDelay = 300
   for (line of strokeList){
     displayLine(line, true, sequenceDelay)
-    console.log(getStrokeDuration(line))
     sequenceDelay += getStrokeDuration(line) //only start drawing the stroke once the others have finished
+    sequenceDelay += interStrokeDelay
   }
 }
 
 function getStrokeDuration(stroke){
 	let duration = stroke.reduce((total, thisSegment) => {
-		console.log(total)
 		return(total + thisSegment.relativeTimeDelta)
 	}, 0)
 	return (duration)
